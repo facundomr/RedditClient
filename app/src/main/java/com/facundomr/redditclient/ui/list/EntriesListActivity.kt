@@ -11,7 +11,6 @@ import com.facundomr.redditclient.ui.detail.ItemDetailActivity
 import com.facundomr.redditclient.ui.detail.ItemDetailFragment
 import com.facundomr.redditclient.R
 
-import com.facundomr.redditclient.dummy.DummyContent
 import com.facundomr.redditclient.model.EntryData
 import kotlinx.android.synthetic.main.activity_item_list.*
 import kotlinx.android.synthetic.main.item_list.*
@@ -41,12 +40,12 @@ class EntriesListActivity : AppCompatActivity() {
     private fun setupRecyclerView(recyclerView: RecyclerView, data: List<EntryData>) {
 
         val onEntryClickListener = View.OnClickListener { v ->
-            val item = v.tag as DummyContent.DummyItem
+            val item = v.tag as EntryData
             if (twoPane) {
                 val fragment = ItemDetailFragment()
                     .apply {
                         arguments = Bundle().apply {
-                            putString(ItemDetailFragment.ARG_ITEM_ID, item.id)
+                            putSerializable(ItemDetailFragment.ARG_ITEM, item)
                         }
                     }
                 supportFragmentManager
@@ -55,7 +54,7 @@ class EntriesListActivity : AppCompatActivity() {
                     .commit()
             } else {
                 val intent = Intent(v.context, ItemDetailActivity::class.java).apply {
-                    putExtra(ItemDetailFragment.ARG_ITEM_ID, item.id)
+                    putExtra(ItemDetailFragment.ARG_ITEM, item)
                 }
                 v.context.startActivity(intent)
             }
