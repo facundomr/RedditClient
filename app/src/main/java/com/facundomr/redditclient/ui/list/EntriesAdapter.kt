@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.facundomr.redditclient.R
 import com.facundomr.redditclient.model.EntryData
 import kotlinx.android.synthetic.main.item_list_content.view.*
@@ -29,7 +30,9 @@ class EntriesAdapter(
             title.text = item.title
             date.text = item.created.toString()
 
-            isVisible = !item.read
+            unreadIndicator.isVisible = !item.read
+
+            Glide.with(this).load(item.thumbnail).into(thumbnail)
 
             tag = item
             setOnClickListener(onClickListener)
