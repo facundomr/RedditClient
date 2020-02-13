@@ -8,7 +8,6 @@ import com.google.android.material.snackbar.Snackbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 
 import com.facundomr.redditclient.dummy.DummyContent
 import kotlinx.android.synthetic.main.activity_item_list.*
