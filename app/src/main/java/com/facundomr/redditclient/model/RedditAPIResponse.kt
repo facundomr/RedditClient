@@ -10,5 +10,6 @@ data class Entry(val data: EntryData)
 
 data class EntryData(
     val title: String, @SerializedName("author_fullname") val author: String,
-    val thumbnail: String?, val created: Long, val read: Boolean = false
+    val thumbnail: String?, val created: Long, val read: Boolean = false,
+    @SerializedName("num_comments") val comments: Long
 )

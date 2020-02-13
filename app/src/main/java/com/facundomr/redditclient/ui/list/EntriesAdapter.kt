@@ -29,6 +29,7 @@ class EntriesAdapter(
             author.text = item.author
             title.text = item.title
             date.text = item.created.toString()
+            comments.text = "${item.comments}"
 
             unreadIndicator.isVisible = !item.read
 
