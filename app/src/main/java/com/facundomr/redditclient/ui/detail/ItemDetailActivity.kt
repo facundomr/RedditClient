@@ -1,4 +1,4 @@
-package com.facundomr.redditclient
+package com.facundomr.redditclient.ui.detail
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,6 +6,8 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NavUtils
 import android.view.MenuItem
+import com.facundomr.redditclient.R
+import com.facundomr.redditclient.ui.list.ItemListActivity
 import kotlinx.android.synthetic.main.activity_item_detail.*
 
 /**
@@ -41,7 +43,8 @@ class ItemDetailActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
-            val fragment = ItemDetailFragment().apply {
+            val fragment = ItemDetailFragment()
+                .apply {
                 arguments = Bundle().apply {
                     putString(
                         ItemDetailFragment.ARG_ITEM_ID,

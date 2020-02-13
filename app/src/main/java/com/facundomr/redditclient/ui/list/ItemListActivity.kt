@@ -1,4 +1,4 @@
-package com.facundomr.redditclient
+package com.facundomr.redditclient.ui.list
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +8,9 @@ import com.google.android.material.snackbar.Snackbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.facundomr.redditclient.ui.detail.ItemDetailActivity
+import com.facundomr.redditclient.ui.detail.ItemDetailFragment
+import com.facundomr.redditclient.R
 
 import com.facundomr.redditclient.dummy.DummyContent
 import kotlinx.android.synthetic.main.activity_item_list.*
@@ -54,7 +57,12 @@ class ItemListActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView(recyclerView: RecyclerView) {
-        recyclerView.adapter = SimpleItemRecyclerViewAdapter(this, DummyContent.ITEMS, twoPane)
+        recyclerView.adapter =
+            SimpleItemRecyclerViewAdapter(
+                this,
+                DummyContent.ITEMS,
+                twoPane
+            )
     }
 
     class SimpleItemRecyclerViewAdapter(
@@ -70,7 +78,8 @@ class ItemListActivity : AppCompatActivity() {
             onClickListener = View.OnClickListener { v ->
                 val item = v.tag as DummyContent.DummyItem
                 if (twoPane) {
-                    val fragment = ItemDetailFragment().apply {
+                    val fragment = ItemDetailFragment()
+                        .apply {
                         arguments = Bundle().apply {
                             putString(ItemDetailFragment.ARG_ITEM_ID, item.id)
                         }

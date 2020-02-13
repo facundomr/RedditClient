@@ -1,10 +1,11 @@
-package com.facundomr.redditclient
+package com.facundomr.redditclient.ui.detail
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.facundomr.redditclient.R
 import com.facundomr.redditclient.dummy.DummyContent
 import kotlinx.android.synthetic.main.activity_item_detail.*
 import kotlinx.android.synthetic.main.item_detail.view.*
