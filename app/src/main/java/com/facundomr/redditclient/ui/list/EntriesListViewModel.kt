@@ -21,9 +21,20 @@ class EntriesListViewModel: ViewModel() {
 
         viewModelScope.launch {
 
-            val entries = RedditAPIClient.getEntries().data.children.map {
+            val entriesResponse = RedditAPIClient.getEntries().data.children
+
+            val authorIds = entriesResponse.map {
+                it.data.author
+            }
+                .distinct()
+                .joinToString()
+
+            val userDataById = RedditAPIClient.getUsers(authorIds)
+
+            val entries = entriesResponse.map {
 
                 it.data.read = getPrefs().getBoolean(it.data.id, false)
+                it.data.username = userDataById[it.data.author]?.name ?: ""
                 it.data
             }
 

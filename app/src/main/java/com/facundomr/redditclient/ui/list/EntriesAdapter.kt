@@ -26,7 +26,7 @@ class EntriesAdapter(
         val item = values[position]
 
         with(holder.itemView) {
-            author.text = item.author
+            author.text = item.username
             title.text = item.title
             date.text = item.created.label
             comments.text = "${item.comments}"

@@ -41,7 +41,7 @@ class ItemDetailFragment : Fragment() {
         val rootView = inflater.inflate(R.layout.item_detail, container, false)
 
         with(rootView) {
-            author.text = entry.author
+            author.text = entry.username
             title.text = entry.title
             date.text = entry.created.label
             comments.text = "${entry.comments}"
