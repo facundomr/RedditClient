@@ -1,5 +1,7 @@
 package com.facundomr.redditclient.api
 
+import com.facundomr.redditclient.api.deserializer.EntryDateDeserializer
+import com.facundomr.redditclient.model.EntryDate
 import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -7,9 +9,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 object RedditAPIClient {
 
     val webservice by lazy {
+
+        val gsonBuilder = GsonBuilder()
+            .registerTypeAdapter(EntryDate::class.java, EntryDateDeserializer())
+
         Retrofit.Builder()
             .baseUrl("https://www.reddit.com/")
-            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
+            .addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
             .build().create(RedditAPIInterface::class.java)
     }
 

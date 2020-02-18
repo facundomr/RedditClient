@@ -28,7 +28,7 @@ class EntriesAdapter(
         with(holder.itemView) {
             author.text = item.author
             title.text = item.title
-            date.text = item.created.toString()
+            date.text = item.created.label
             comments.text = "${item.comments}"
 
             unreadIndicator.isVisible = !item.read
@@ -36,7 +36,10 @@ class EntriesAdapter(
             Glide.with(this).load(item.thumbnail).into(thumbnail)
 
             tag = item
-            setOnClickListener(onClickListener)
+            setOnClickListener {
+                unreadIndicator.isVisible = false
+                onClickListener.onClick(it)
+            }
         }
     }
 
