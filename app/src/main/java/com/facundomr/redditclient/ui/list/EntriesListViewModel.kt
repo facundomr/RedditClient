@@ -1,8 +1,10 @@
 package com.facundomr.redditclient.ui.list
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.facundomr.redditclient.RedditClientApplication
 import com.facundomr.redditclient.api.RedditAPIClient
 import com.facundomr.redditclient.model.EntryData
 import kotlinx.coroutines.launch
@@ -20,10 +22,19 @@ class EntriesListViewModel: ViewModel() {
         viewModelScope.launch {
 
             val entries = RedditAPIClient.getEntries().data.children.map {
+
+                it.data.read = getPrefs().getBoolean(it.data.id, false)
                 it.data
             }
 
             data.value = entries
         }
     }
+
+    private fun getPrefs() = RedditClientApplication.getContext().getSharedPreferences("prefs", Context.MODE_PRIVATE)
+
+    fun markAsRead(item: EntryData) {
+        getPrefs().edit().putBoolean(item.id, true).apply()
+    }
+
 }

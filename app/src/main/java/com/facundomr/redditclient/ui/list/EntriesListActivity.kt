@@ -18,12 +18,13 @@ import kotlinx.android.synthetic.main.item_list.*
 class EntriesListActivity : AppCompatActivity() {
 
     private var twoPane: Boolean = false
+    private lateinit var viewModel: EntriesListViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item_list)
 
-        val viewModel = ViewModelProvider(this).get(EntriesListViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(EntriesListViewModel::class.java)
 
         viewModel.data.observe(this, Observer<List<EntryData>> { data ->
             setupRecyclerView(item_list, data)
@@ -40,7 +41,10 @@ class EntriesListActivity : AppCompatActivity() {
     private fun setupRecyclerView(recyclerView: RecyclerView, data: List<EntryData>) {
 
         val onEntryClickListener = View.OnClickListener { v ->
+
             val item = v.tag as EntryData
+            viewModel.markAsRead(item)
+
             if (twoPane) {
                 val fragment = ItemDetailFragment()
                     .apply {
@@ -58,6 +62,7 @@ class EntriesListActivity : AppCompatActivity() {
                 }
                 v.context.startActivity(intent)
             }
+
         }
 
         recyclerView.adapter = EntriesAdapter(data, onEntryClickListener)
