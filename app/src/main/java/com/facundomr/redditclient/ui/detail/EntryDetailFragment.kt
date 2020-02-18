@@ -16,10 +16,10 @@ import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.facundomr.redditclient.R
 import com.facundomr.redditclient.model.EntryData
-import kotlinx.android.synthetic.main.activity_item_detail.*
-import kotlinx.android.synthetic.main.item_detail.view.*
+import kotlinx.android.synthetic.main.activity_entry_detail.*
+import kotlinx.android.synthetic.main.fragment_entry_detail.view.*
 
-class ItemDetailFragment : Fragment() {
+class EntryDetailFragment : Fragment() {
 
     private lateinit var entry: EntryData
 
@@ -38,7 +38,7 @@ class ItemDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val rootView = inflater.inflate(R.layout.item_detail, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_entry_detail, container, false)
 
         with(rootView) {
             author.text = entry.username

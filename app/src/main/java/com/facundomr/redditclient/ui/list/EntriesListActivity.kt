@@ -7,13 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.facundomr.redditclient.ui.detail.ItemDetailActivity
-import com.facundomr.redditclient.ui.detail.ItemDetailFragment
+import com.facundomr.redditclient.ui.detail.EntryDetailActivity
+import com.facundomr.redditclient.ui.detail.EntryDetailFragment
 import com.facundomr.redditclient.R
 
 import com.facundomr.redditclient.model.EntryData
-import kotlinx.android.synthetic.main.activity_item_list.*
-import kotlinx.android.synthetic.main.item_list.*
+import kotlinx.android.synthetic.main.activity_entries_list.*
+import kotlinx.android.synthetic.main.layout_entries_list.*
 
 class EntriesListActivity : AppCompatActivity() {
 
@@ -22,7 +22,7 @@ class EntriesListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_item_list)
+        setContentView(R.layout.activity_entries_list)
 
         viewModel = ViewModelProvider(this).get(EntriesListViewModel::class.java)
 
@@ -46,10 +46,10 @@ class EntriesListActivity : AppCompatActivity() {
             viewModel.markAsRead(item)
 
             if (twoPane) {
-                val fragment = ItemDetailFragment()
+                val fragment = EntryDetailFragment()
                     .apply {
                         arguments = Bundle().apply {
-                            putSerializable(ItemDetailFragment.ARG_ITEM, item)
+                            putSerializable(EntryDetailFragment.ARG_ITEM, item)
                         }
                     }
                 supportFragmentManager
@@ -57,8 +57,8 @@ class EntriesListActivity : AppCompatActivity() {
                     .replace(R.id.item_detail_container, fragment)
                     .commit()
             } else {
-                val intent = Intent(v.context, ItemDetailActivity::class.java).apply {
-                    putExtra(ItemDetailFragment.ARG_ITEM, item)
+                val intent = Intent(v.context, EntryDetailActivity::class.java).apply {
+                    putExtra(EntryDetailFragment.ARG_ITEM, item)
                 }
                 v.context.startActivity(intent)
             }

@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.facundomr.redditclient.R
 import com.facundomr.redditclient.model.EntryData
-import kotlinx.android.synthetic.main.item_list_content.view.*
+import kotlinx.android.synthetic.main.item_entry.view.*
 
 class EntriesAdapter(
     private val values: List<EntryData>,
@@ -17,7 +17,7 @@ class EntriesAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_list_content, parent, false)
+            .inflate(R.layout.item_entry, parent, false)
         return ViewHolder(view)
     }
 

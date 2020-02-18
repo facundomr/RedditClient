@@ -1,36 +1,27 @@
 package com.facundomr.redditclient.ui.detail
 
-import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.NavUtils
 import android.view.MenuItem
 import com.facundomr.redditclient.R
-import com.facundomr.redditclient.ui.list.EntriesListActivity
-import kotlinx.android.synthetic.main.activity_item_detail.*
+import kotlinx.android.synthetic.main.activity_entry_detail.*
 
-class ItemDetailActivity : AppCompatActivity() {
+class EntryDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_item_detail)
+        setContentView(R.layout.activity_entry_detail)
         setSupportActionBar(toolbar)
-
-/*        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own detail action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }*/
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         if (savedInstanceState == null) {
-            val fragment = ItemDetailFragment()
+            val fragment = EntryDetailFragment()
                 .apply {
                 arguments = Bundle().apply {
                     putSerializable(
-                        ItemDetailFragment.ARG_ITEM,
-                        intent.getSerializableExtra(ItemDetailFragment.ARG_ITEM)
+                        EntryDetailFragment.ARG_ITEM,
+                        intent.getSerializableExtra(EntryDetailFragment.ARG_ITEM)
                     )
                 }
             }
